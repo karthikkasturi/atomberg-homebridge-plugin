@@ -12,7 +12,7 @@ Homebridge plugin for [Atomberg](https://atomberg.com/) smart fans and lights, w
 
 The plugin uses the [Atomberg public APIs](https://developer.atomberg-iot.com/) for initial device discovery and as a fallback transport, and listens for the fan's UDP broadcasts on port 5625 for live state updates. When a fan's IP address is known from those broadcasts, **commands are sent directly to it on UDP/5600** instead of going through the cloud — this keeps the plugin well under Atomberg's 100 calls/day quota.
 
-Supported series (per the Atomberg developer docs and the upstream Home Assistant integration): R1, R2, K1, I1, I2, I3, M1, S1, S2. Brightness control is offered for I1/M1/S1/S2; colour temperature for I1 (Aris Starlight). Speeds 1–6 are mapped onto HomeKit's 0–100 rotation slider; legacy 5-speed fans can opt in via `legacy5Speed: true` in config.
+Supported series (per the Atomberg developer docs and the upstream Home Assistant integration): R1, R2, R3, K1, I1, I2, I3, M1, S1, S2. Brightness control is offered for I1/M1/S1/S2; colour temperature for I1 (Aris Starlight). Speeds 1–6 are mapped onto HomeKit's 0–100 rotation slider; legacy 5-speed fans can opt in via `legacy5Speed: true` in config.
 
 ### What's different vs `homebridge-atomberg-fan*` on npm
 

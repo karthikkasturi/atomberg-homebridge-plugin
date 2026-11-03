@@ -37,7 +37,7 @@ export const UDP_COMMAND_PORT = 5600;
 // likely either non-fan hardware or unverified — skip with a warning rather than
 // crashing the platform. Aligned with the dasshubham762/atomberg-integration HA list.
 export const SUPPORTED_SERIES: ReadonlyArray<string> = [
-  'R1', 'R2', 'K1', 'I1', 'I2', 'I3', 'M1', 'S1', 'S2',
+  'R1', 'R2', 'R3', 'K1', 'I1', 'I2', 'I3', 'M1', 'S1', 'S2',
 ];
 
 // Series whose lightbulb supports dimming. Per Atomberg docs: I1 (Aris Starlight)
