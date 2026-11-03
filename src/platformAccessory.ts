@@ -296,6 +296,29 @@ export class AtombergFanPlatformAccessory {
       if (Object.keys(command).length === 0) {
         return;
       }
+
+      // Normalize compound commands before dispatching:
+      // 1. If speed is set alongside power: true (e.g. Siri sending both Active
+      //    and RotationSpeed in one utterance), drop power: true. Atomberg fan
+      //    firmware auto-turns on when receiving a speed command, and bundling
+      //    power: true causes the fan to prioritize the power state and ignore the
+      //    speed change.
+      if (command.speed !== undefined && command.power === true) {
+        delete command.power;
+      }
+      if (command.power === false && command.speed !== undefined) {
+        delete command.speed;
+      }
+      // 2. Same for LED: brightness and light_mode auto-turn the LED on, so drop
+      //    led: true if bundled together.
+      if ((command.brightness !== undefined || command.light_mode !== undefined) && command.led === true) {
+        delete command.led;
+      }
+      if (command.led === false) {
+        delete command.brightness;
+        delete command.light_mode;
+      }
+
       this.sendDeviceUpdate(command).catch(() => undefined);
     }, COMMAND_DEBOUNCE_MS);
   }
